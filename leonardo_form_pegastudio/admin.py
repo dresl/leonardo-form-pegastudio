@@ -18,7 +18,7 @@ class PegastudioOrdersAdmin(admin.ModelAdmin):
             return ['pub_date']
         return []
     inlines = [PegastudioProductsInline]
-    list_display = ('prijmeni', 'pub_date', 'was_published_recently')
+    list_display = ('prijmeni', 'pub_date')
     list_filter = ['pub_date','prijmeni']
     search_fields = ['prijmeni']
 
