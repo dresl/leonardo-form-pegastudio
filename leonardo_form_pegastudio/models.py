@@ -105,8 +105,7 @@ class PegastudioOrders(models.Model):
         max_length=255, verbose_name=u"Faktruační údaje", default='')
     zprava = models.TextField(
         verbose_name=u"Zpráva", default='')
-    datum = models.DateTimeField(
-        verbose_name=u"Datum objednávky", default=timezone.now())
+    pub_date = models.DateTimeField(u'Datum objednávky', auto_now_add=True)
 
     def __unicode__(self):
         return self.jmeno
