@@ -83,28 +83,28 @@ class PegastudioOrders(models.Model):
 
     jmeno = models.CharField(
         max_length=255, verbose_name=u"Jméno", default='')
-    prijmeni = models.CharField(
-        max_length=255, verbose_name=u"Příjmení", default='')
-    email = models.EmailField(
-        verbose_name=u"E-mail", default='')
-    telefon = models.PositiveIntegerField(
-        verbose_name=u"Telefon", default=0)
     std = models.CharField(
-        max_length=255, verbose_name="st ḱód", default='')
+        max_length=255, verbose_name=u"st ḱód", default='')
     pozice = models.CharField(
         verbose_name=u"Pozice", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    prijmeni = models.CharField(
+        max_length=255, verbose_name=u"Příjmení", default='')
     fakulta = models.CharField(
         verbose_name=u"Fakulta", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
+    email = models.EmailField(
+        verbose_name=u"E-mail", default='')
     katedra = models.CharField(
         verbose_name=u"Katedra", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    telefon = models.PositiveIntegerField(
+        verbose_name=u"Telefon", default=None)
     budova = models.CharField(
         verbose_name=u"Budova", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     patro = models.CharField(
-        verbose_name=u"Fakulta", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+        verbose_name=u"Patro", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     fakturacni_udaje = models.CharField(
         max_length=255, verbose_name=u"Faktruační údaje", default='')
     zprava = models.TextField(
-        verbose_name=u"Zpráva", default='')
+        verbose_name=u"Zpráva", default='', blank=True)
     pub_date = models.DateTimeField(u'Datum objednávky', auto_now_add=True)
 
     def __unicode__(self):
@@ -112,8 +112,8 @@ class PegastudioOrders(models.Model):
 
     class Meta:
         ordering = ['jmeno', ]
-        verbose_name = 'Položka'
-        verbose_name_plural = 'Položky'
+        verbose_name = u'Položka'
+        verbose_name_plural = u'Položky'
 
 
 class PegastudioProducts(models.Model):
@@ -126,7 +126,7 @@ class PegastudioProducts(models.Model):
     laminace = models.CharField(
         verbose_name=u"Laminace", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
     document = models.FileField(
-        upload_to='documents/')
+        verbose_name=u"Dokument", upload_to='documents/')
 
     def __unicode__(self):
         return self.material

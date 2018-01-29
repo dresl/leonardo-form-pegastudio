@@ -16,7 +16,6 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from horizon.utils import validators
 from horizon_contrib.forms import SelfHandlingModelForm
-from django.conf import settings
 from django.forms import inlineformset_factory
 from django.db import models
 from django.forms import Field as DjangoField
@@ -44,6 +43,7 @@ def my_handle(self, request, data):
 SelfHandlingModelForm.handle = my_handle
 
 class PegastudioOrderForm(SelfHandlingModelForm):
+
 
     class Meta:
         model = PegastudioOrders

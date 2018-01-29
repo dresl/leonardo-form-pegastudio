@@ -34,7 +34,7 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
 
         ret.update({
             "view_name": "Objednávací list",
-            "modal_size": 'lg',
+            "modal_size": 'lg fullscreen',
             "modal_header": 'Objednávací list',
             })
         return ret

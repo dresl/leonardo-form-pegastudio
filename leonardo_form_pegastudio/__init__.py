@@ -19,9 +19,6 @@ class Default(object):
     config = {
         'ORDER_DEFAULT_TO_EMAIL':
         ('to@email.com', u"E-mail, na který se budou odesílat objednávky."),
-        'COLOR_CHOICES':
-        ('color choices',(('R', 'Red'),('B', 'Blue'),('G', 'Green'),
-        ))
     }
 
     js_files = [
@@ -33,7 +30,7 @@ class Default(object):
 
 class Config(AppConfig, Default):
     name = 'leonardo_form_pegastudio'
-    verbose_name = "Objednávky"
+    verbose_name = u"Objednávky"
 
 
 default = Default()
