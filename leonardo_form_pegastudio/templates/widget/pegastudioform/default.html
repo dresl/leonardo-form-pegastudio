@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-<a class="ajax-modal btn btn-primary btn-lg order-list-btn" href="{% url 'objedn_list' %}" onclick="UpdateModalFormOrder();">Objednávací list</a>
+<a class="ajax-modal btn btn-primary btn-lg order-list-btn" href="{% url 'objedn_list' %}" onclick="UpdateModalFormOrder();">Objednávací formulář</a>
 <script type="text/javascript">
 function UpdateModalFormOrder() {
     var interval_id = setInterval(function(){
@@ -13,7 +13,7 @@ function UpdateModalFormOrder() {
         var y = x.childNodes[1];
         y.style.borderBottom = "none";
         y.getElementsByTagName("H3")[0].style.display = "block";
-        y.getElementsByTagName("H3")[0].style.background = "url(/media/2018/01/28/one.png)";
+        y.getElementsByTagName("H3")[0].style.background = "url(/media/public/branding/one_aK4F1pq.png)";
         y.getElementsByTagName("H3")[0].style.color = "transparent";
         y.getElementsByTagName("H3")[0].style.height = "40px";
         y.getElementsByTagName("H3")[0].style.backgroundRepeat = "no-repeat";

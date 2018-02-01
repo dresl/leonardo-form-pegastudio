@@ -108,7 +108,7 @@ class PegastudioOrders(models.Model):
     budova = models.CharField(
         verbose_name=u"Budova", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     std = models.CharField(
-        max_length=255, verbose_name=u"st ḱód", default='')
+        max_length=255, verbose_name=u"st kód", default='')
     patro = models.CharField(
         verbose_name=u"Patro", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     fakturacni_udaje = models.CharField(
@@ -147,7 +147,7 @@ class PegastudioProducts(models.Model):
     order = models.ForeignKey(PegastudioOrders,
         verbose_name=u"Objednávka", related_name="orderproduct_set")
     pocet_kusu = models.PositiveIntegerField(
-        verbose_name=u"Počet kusů", default=0)
+        verbose_name=u"Počet kusů", default=1)
     material = models.CharField(
         verbose_name=u"Materiál", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
     laminace = models.CharField(
