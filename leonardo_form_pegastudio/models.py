@@ -112,7 +112,7 @@ class PegastudioOrders(models.Model):
     patro = models.CharField(
         verbose_name=u"Patro", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     fakturacni_udaje = models.CharField(
-        verbose_name=u"Fakturační údaje", default="Univerzita Pardubice, Studentská 95, Pardubice 532 10", max_length=50)
+        verbose_name=u"Fakturační údaje", default="Univerzita Pardubice, Studentská 95, Pardubice 532 10", max_length=100)
     ic = models.CharField(
         verbose_name=u"IČ", default="00216275", max_length=50)
     dic = models.CharField(
