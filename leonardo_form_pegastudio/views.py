@@ -51,16 +51,8 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                 subject = u"Objednávka - " + prijmeni_text
                 send_mail(
                     subject,
-                    'leonardo_form_pegastudio/pegastudio_email.html',
-                    {'jmeno': orderproducts.data['jmeno'],
-                     'prijmeni': orderproducts.data['prijmeni'],
-                     'telefon': orderproducts.data['telefon'],
-                     'email': orderproducts.data['email'],
-                     'adresa': orderproducts.data['adresa'],
-                     'firma': orderproducts.data['firma'],
-                     'ico': orderproducts.data['ico'],
-                     'dic': orderproducts.data['dic'],
-                     'order': PegastudioOrders.objects.get(id=orderproducts.instance.id,),
+                    'leonardo_form_pegastudio/pegastudio_email.html', {
+                        'order': PegastudioOrders.objects.get(id=orderproducts.instance.id,),
                     },
                     [email.strip() for email in settings.ORDER_DEFAULT_TO_EMAIL.split(',')],
                     fail_silently=False,
