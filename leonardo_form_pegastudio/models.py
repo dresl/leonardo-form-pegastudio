@@ -6,6 +6,16 @@ from django.utils.translation import ugettext_lazy as _
 import datetime
 
 
+CHOICES_BOOLEAN = (
+    ('ano', 'Ano'),
+    ('ne', 'Ne'),
+    )
+
+CHOICES_TYPE_POZICE = (
+   ('poz1', 'Zaměstnanec'),
+   ('poz2', 'Student'),
+)
+
 CHOICES_TYPE_KNEDLIKY = (
  ('HOUSKOVÉ KNEDLÍKY', (
    ('khouskovy800', 'Knedlík houskový - velký 800g'),
@@ -83,28 +93,44 @@ class PegastudioOrders(models.Model):
 
     jmeno = models.CharField(
         max_length=255, verbose_name=u"Jméno", default='')
-    std = models.CharField(
-        max_length=255, verbose_name=u"st ḱód", default='')
     pozice = models.CharField(
-        verbose_name=u"Pozice", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+        verbose_name=u"Pozice", choices=CHOICES_TYPE_POZICE, max_length=50)
     prijmeni = models.CharField(
         max_length=255, verbose_name=u"Příjmení", default='')
     fakulta = models.CharField(
         verbose_name=u"Fakulta", choices=CHOICES_TYPE_KNEDLIKY, max_length=100)
-    email = models.EmailField(
-        verbose_name=u"E-mail", default='')
-    katedra = models.CharField(
-        verbose_name=u"Katedra", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     telefon = models.PositiveIntegerField(
         verbose_name=u"Telefon", default=None)
+    katedra = models.CharField(
+        verbose_name=u"Katedra", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    email = models.EmailField(
+        verbose_name=u"E-mail", default='')
     budova = models.CharField(
         verbose_name=u"Budova", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    std = models.CharField(
+        max_length=255, verbose_name=u"st ḱód", default='')
     patro = models.CharField(
         verbose_name=u"Patro", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     fakturacni_udaje = models.CharField(
-        max_length=255, verbose_name=u"Faktruační údaje", default='')
+        verbose_name=u"Fakturační údaje", default="Univerzita Pardubice, Studentská 95, Pardubice 532 10", max_length=50)
+    ic = models.CharField(
+        verbose_name=u"IČ", default="00216275", max_length=50)
+    dic = models.CharField(
+        verbose_name=u"DIČ", default="CZ00216275", max_length=50)
+    cislo_uctu = models.CharField(
+        verbose_name=u"Číslo účtu", default="37030561/0100", max_length=50)
     zprava = models.TextField(
         verbose_name=u"Zpráva", default='', blank=True)
+    porada_material = models.CharField(
+        verbose_name=u"Chcete poradit s výběrem materiálu?", choices=CHOICES_BOOLEAN, max_length=50)
+    porada_poster = models.CharField(
+        verbose_name=u"Chcete graficky zpracovat poster?", choices=CHOICES_BOOLEAN, max_length=50)
+    prezentace = models.CharField(
+        verbose_name=u"Prezentace", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    zeme = models.CharField(
+        verbose_name=u"Země", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
+    preprava = models.CharField(
+        verbose_name=u"Přeprava", choices=CHOICES_TYPE_KNEDLIKY, max_length=50)
     pub_date = models.DateTimeField(u'Datum objednávky', auto_now_add=True)
 
     def __unicode__(self):
@@ -117,6 +143,7 @@ class PegastudioOrders(models.Model):
 
 
 class PegastudioProducts(models.Model):
+
     order = models.ForeignKey(PegastudioOrders,
         verbose_name=u"Objednávka", related_name="orderproduct_set")
     pocet_kusu = models.PositiveIntegerField(
