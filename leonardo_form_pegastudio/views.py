@@ -27,8 +27,8 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
     def get_context_data(self, **kwargs):
         ret = super(PegastudioOrderCreate, self).get_context_data(**kwargs)
 
-        if self.request.POST:
-            ret['orderproducts'] = PegastudioOrderFormSet(self.request.POST)
+        if self.request.method == 'POST':
+            ret['orderproducts'] = PegastudioOrderFormSet(self.request.POST, self.request.FILES)
         else:
             ret['orderproducts'] = PegastudioOrderFormSet()
 

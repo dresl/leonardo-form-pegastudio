@@ -44,7 +44,6 @@ SelfHandlingModelForm.handle = my_handle
 
 class PegastudioOrderForm(SelfHandlingModelForm):
 
-
     class Meta:
         model = PegastudioOrders
         exclude = ()
