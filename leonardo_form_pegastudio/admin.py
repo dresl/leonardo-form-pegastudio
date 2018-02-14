@@ -22,4 +22,5 @@ class PegastudioOrdersAdmin(admin.ModelAdmin):
     list_filter = ['pub_date','prijmeni']
     search_fields = ['prijmeni']
 
+
 admin.site.register(PegastudioOrders, PegastudioOrdersAdmin)

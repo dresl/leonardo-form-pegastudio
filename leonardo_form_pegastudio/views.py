@@ -14,7 +14,7 @@ from leonardo import forms, messages
 from django.core.urlresolvers import reverse_lazy
 from django.forms import inlineformset_factory
 from .models import PegastudioOrders, PegastudioProducts
-from .forms import PegastudioOrderFormSet
+from .forms import PegastudioOrderFormSet, PegastudioOrderForm
 from django.views.generic import CreateView
 from leonardo.utils.emails import send_templated_email as send_mail
 
@@ -26,18 +26,18 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
 
     def get_context_data(self, **kwargs):
         ret = super(PegastudioOrderCreate, self).get_context_data(**kwargs)
-
         if self.request.method == 'POST':
-            ret['orderproducts'] = PegastudioOrderFormSet(self.request.POST, self.request.FILES)
+            ret['orderproducts'] = PegastudioOrderFormSet(self.request.POST,self.request.FILES)
         else:
             ret['orderproducts'] = PegastudioOrderFormSet()
 
         ret.update({
-            "view_name": "Objednávací list",
+            "view_name": "Objednávací formulář",
             "modal_size": 'lg fullscreen',
-            "modal_header": 'Objednávací list',
+            "modal_header": 'Objednávací formulář',
             })
         return ret
+
 
     def form_valid(self, form):
         context = self.get_context_data()
@@ -53,9 +53,11 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                     subject,
                     'leonardo_form_pegastudio/pegastudio_email.html', {
                         'order': PegastudioOrders.objects.get(id=orderproducts.instance.id,),
+                        'domain': Site.objects.get(name="tiskupce.cz")
                     },
                     [email.strip() for email in settings.ORDER_DEFAULT_TO_EMAIL.split(',')],
                     fail_silently=False,
                 )
 
         return super(PegastudioOrderCreate, self).form_valid(form)
+

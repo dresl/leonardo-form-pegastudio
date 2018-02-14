@@ -8,6 +8,3 @@ from . import views
 urlpatterns = [
     url(r'^objednavka/pridat/$', views.PegastudioOrderCreate.as_view(), name='objedn_list'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

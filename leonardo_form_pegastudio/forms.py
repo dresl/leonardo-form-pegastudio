@@ -42,11 +42,12 @@ def my_handle(self, request, data):
 
 SelfHandlingModelForm.handle = my_handle
 
+
 class PegastudioOrderForm(SelfHandlingModelForm):
 
     class Meta:
         model = PegastudioOrders
         exclude = ()
 
-PegastudioOrderFormSet = inlineformset_factory(PegastudioOrders, PegastudioProducts,
-                                            form=PegastudioOrderForm, extra=1)
+
+PegastudioOrderFormSet = inlineformset_factory(PegastudioOrders, PegastudioProducts, extra=1, fields=['pocet_kusu','laminace','material','file'])

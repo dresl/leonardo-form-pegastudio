@@ -2,42 +2,5 @@
 {% load i18n %}
 
 {% block content %}
-<a class="ajax-modal btn btn-primary btn-lg order-list-btn" href="{% url 'objedn_list' %}" onclick="UpdateModalFormOrder();">Objednávací formulář</a>
-<script type="text/javascript">
-function UpdateModalFormOrder() {
-    var interval_id = setInterval(function(){
-        var x = document.getElementById("modal-full-screen");
-        x.style.display="none";
-        var x = document.getElementById("pegastudio_order_formset").parentElement;
-        x.style.backgroundColor="#021B49";
-        var y = x.childNodes[1];
-        y.style.borderBottom = "none";
-        y.getElementsByTagName("H3")[0].style.display = "block";
-        y.getElementsByTagName("H3")[0].style.background = "url(/media/public/branding/logo_form.png)";
-        y.getElementsByTagName("H3")[0].style.color = "transparent";
-        y.getElementsByTagName("H3")[0].style.height = "40px";
-        y.getElementsByTagName("H3")[0].style.backgroundRepeat = "no-repeat";
-        y.getElementsByTagName("H3")[0].style.backgroundSize = "83px";
-        $("#pegastudio_order_formset .form-control").map(function() {
-           var label = $(this).parent().prev().text();
-           $(this).attr("placeholder", label);
-        });
-        $("#pegastudio_order_formset select.form-control").map(function(){
-            var labelSelect = $(this).parent().prev().text();
-            $(this).children().first().text(labelSelect).attr("disabled", "disabled");
-        });
-        $("#pegastudio_order_formset .btn.btn-submit-order").click(function() {
-            UpdateModalFormOrder();
-        });
-        $("a.close").click(function() {    
-            var killId = setTimeout(function() {
-              for (var i = killId; i > 0; i--) clearInterval(i)
-            }, 1000);
-        });
-    }, 400);
-    setTimeout(function(){    
-        clearInterval(interval_id);
-    }, 1000);
-}
-</script>
+<a class="btn btn-primary btn-lg order-list-btn" href="{% url 'objedn_list' %}">Objednávací formulář</a>
 {% endblock %}

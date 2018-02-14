@@ -3,79 +3,79 @@
 <h3>Jméno: {{ order.jmeno }} {{ order.prijmeni }}</h3>
 <table style="border: 1px solid #757575;padding: 6px;width: 100%;">
     <tr>
-      <th style="text-align: left;padding: 4px">st kód:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">st kód:</th>
       <td>{{ order.std }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Pozice:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Pozice:</th>
       <td>{{ order.get_pozice_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Telefon:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Telefon:</th>
       <td>{{ order.telefon }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">E-mail:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">E-mail:</th>
       <td>{{ order.email }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Fakturační adresa:</th>
-      <td>{{ order.fakturacni_adresa }}</td>
+      <th style="text-align: left;padding: 4px;width: 150px;">Fakturační adresa:</th>
+      <td>{{ order.fakturacni_udaje }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Fakulta:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Fakulta:</th>
       <td>{{ order.get_fakulta_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Katedra:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Katedra:</th>
       <td>{{ order.get_katedra_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Budova:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Budova:</th>
       <td>{{ order.get_budova_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Patro:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Patro:</th>
       <td>{{ order.get_patro_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">IČ:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">IČ:</th>
       <td>{{ order.ic }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">DIČ:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">DIČ:</th>
       <td>{{ order.dic }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Číslo účtu:</th>
-      <td>{{ order.dic }}</td>
+      <th style="text-align: left;padding: 4px;width: 150px;">Číslo účtu:</th>
+      <td>{{ order.cislo_uctu }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Porada s materiálem:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Porada s materiálem:</th>
       <td>{{ order.get_porada_material_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Graficky zpracovat poster:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Graficky zpracovat poster:</th>
       <td>{{ order.get_porada_poster_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Prezentace:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Prezentace:</th>
       <td>{{ order.get_prezentace_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Země:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Země:</th>
       <td>{{ order.get_zeme_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Přeprava:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Přeprava:</th>
       <td>{{ order.get_preprava_display }}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Zpráva:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Zpráva:</th>
       <td>{% firstof order.zprava "Neuvedeno" %}</td>
     </tr>
     <tr>
-      <th style="text-align: left;padding: 4px">Vytvořeno:</th>
+      <th style="text-align: left;padding: 4px;width: 150px;">Vytvořeno:</th>
       <td>{{ order.pub_date|date:"d.m. Y H:i" }}</td>
     </tr>
 </table>
@@ -93,7 +93,7 @@
     </tr>
 {% for product in order.orderproduct_set.all %}
     <tr style="background-color: {% cycle '#ffffff' '#f9f9f9' %}">
-      <td style="text-align: left;padding: 8px">{{ product.file }}</td>
+      <td style="text-align: left;padding: 8px"><a href="{{ domain.domain }}/media/{{ product.file }}">{{ domain.domain }}/media/{{ product.file }}</a></td>
       <td style="text-align: left;padding: 8px">{{ product.pocet_kusu }}</td>
       <td style="text-align: left;padding: 8px">{{ product.get_material_display }}</td>
       <td style="text-align: left;padding: 8px">{{ product.get_laminace_display }}</td>
