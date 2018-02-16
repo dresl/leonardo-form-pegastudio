@@ -629,7 +629,7 @@ class PegastudioProducts(models.Model):
     laminace = models.CharField(
         verbose_name=u"Laminace", choices=CHOICES_TYPE_LAMINACE, max_length=255)
     file = models.FileField(
-        u'Soubor', upload_to='documents')
+        u'Soubor', upload_to='documents/%Y/%m/%d/')
 
     def __unicode__(self):
         return self.material
