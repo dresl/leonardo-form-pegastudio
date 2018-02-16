@@ -48,14 +48,27 @@ class PegastudioOrderCreate(forms.ModalFormView, forms.views.CreateView):
                 orderproducts.instance = self.object
                 orderproducts.save()
                 prijmeni_text = orderproducts.data['prijmeni']
-                subject = u"Objednávka - " + prijmeni_text
+                current_order = PegastudioOrders.objects.get(id=orderproducts.instance.id,)
+                subject_order = u"Objednávka - " + prijmeni_text
                 send_mail(
-                    subject,
+                    subject_order,
                     'leonardo_form_pegastudio/pegastudio_email.html', {
-                        'order': PegastudioOrders.objects.get(id=orderproducts.instance.id,),
+                        'order_title': u"Objednávka",
+                        'order': current_order,
                         'domain': Site.objects.get(name="tiskupce.cz")
                     },
                     [email.strip() for email in settings.ORDER_DEFAULT_TO_EMAIL.split(',')],
+                    fail_silently=False,
+                )
+                subject_confirmation = u"Potvrzení o objednávce - tiskupce.cz"
+                send_mail(
+                    subject_confirmation,
+                    'leonardo_form_pegastudio/pegastudio_email.html', {
+                        'order_title': u"Potvrzení o objednávce",
+                        'order': current_order,
+                        'domain': Site.objects.get(name="tiskupce.cz")
+                    },
+                    current_order.email,
                     fail_silently=False,
                 )
 
